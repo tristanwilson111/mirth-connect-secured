@@ -1,0 +1,2 @@
+- Connect Vault with MariaDB
+    - Possible reference? https://github.com/rolivasilva/vault
