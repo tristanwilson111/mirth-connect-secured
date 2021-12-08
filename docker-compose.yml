@@ -5,7 +5,7 @@ services:
     image: nextgenhealthcare/connect:latest
     environment:
       - DATABASE=mysql
-      - DATABASE_URL=jdbc:mysql://mariadb:3306/mirthdb
+      - DATABASE_URL=jdbc:mysql://perconadb:3306/perconadb
       - DATABASE_MAX_CONNECTIONS=20
       - DATABASE_USERNAME=mirthuser
       - DATABASE_PASSWORD=mirthpassword
@@ -19,18 +19,18 @@ services:
       - 8080:8080/tcp
       - 8443:8443/tcp
     depends_on:
-      - mariadb
+      - perconadb
 
-# Official documentation: https://hub.docker.com/_/mariadb
-  mariadb:
-    image: mariadb:latest
+# Official documentation: https://hub.docker.com/_/percona
+  perconadb:
+    image: percona:8
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     environment:
       - MYSQL_ROOT_PASSWORD=root_password
-      - MARIADB_USER=mirthuser
-      - MARIADB_PASSWORD=mirthpassword
-      - MYSQL_DATABASE=mirthdb
+      - MYSQL_USER=mirthuser
+      - MYSQL_PASSWORD=mirthpassword
+      - MYSQL_DATABASE=perconadb
       - MYSQL_ROOT_HOST=%
     expose:
       - 3306
